@@ -14,7 +14,9 @@ var ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 app.get("/amous", (req, res)=>{
   res.sendFile(__dirname + "/amous.html");
 });
-
+app.get("/script.js", (req, res)=>{
+  res.sendFile(__dirname + "/script.js");
+});
 
 const date1 = new Date();
 const datetime = date1.toLocaleString();
