@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="discription" content="これはScratchで作られた「Chat機能つき」でJesterいりの、Among Usです。はじめての方も気軽に来てくださいね。">
+  <meta name="keywords" content="Among-Us-chat,scratch,Jester,chat,Among-Us,Skota11">
+  <link rel="stylesheet" href="style.css">
+  <title>Among us Chat</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" 
+        href="https://cdn.glitch.global/0c35bbf2-29f4-43cf-8da1-7eff1fbec4ae/20220404145824-removebg-preview.png?v=1656272468242">
+  <!--ココナッツそこ全体の背景だよ-->
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+    body {
+      margin: 0px;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color:#dbffcf;
+    }
+      main {
+        margin: 3px;
+      }
+    
+    #msglist {
+      margin: 0;
+      list-style: none;
+    }
+      #name{
+        width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    max-width: 400px;
+      }
+      #msg{
+        width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    max-width: 400px;
+      }
+
+    button{
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      background-image: -webkit-gradient(linear, left top, right top, from(#fa709a), to(#fee140));
+      background-image: -webkit-linear-gradient(left, #fa709a 0%, #fee140 100%);
+      background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+      width: 10em;
+      height:3em;
+      transition: 0.5s ;
+      margin:20px;
+    }
+    
+    button:hover{
+      -webkit-transform: translate(0, -2px);
+      transform: translate(0, -2px);
+      color: #fff;
+      -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+      transition: 0.5s ;
+      margin:20px;
+    }
+    span{
+      color:#ffffff;
+    }
+    .TurbowarpHTML{
+      width: 25em;
+    }
+    #if{
+      position: fixed;	/* 要素の位置を固定する */
+top: 0; /* 基準の位置を画面の一番上に指定する */
+right: 0; /* 基準の位置を画面の一番左に指定する */
+    }
+    footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+  </style>
+</head>
+<body>
+    
+  <header style="float: left; width: 100%; background-color:#aacf53;">
+    <img class="header" src="https://cdn.glitch.global/0c35bbf2-29f4-43cf-8da1-7eff1fbec4ae/36eb9833413754c424a49abbaad7293a.png?v=1656225806616" 
+         alt="AmongUsChat">
+<br>
+  <h2>
+    <a href="https://amous-chat-s.glitch.me" class="btn btn--orange btn--cubic btn--shadow" 
+       style="text-decolation:none;" target="_blank">Classic版へ</a><br>
+  </h2>
+      <iframe id="if" style="float:right;" src="https://turbowarp.org/709143816/embed" width="40%" height="550"  allowtransparency="true" 
+            frameborder="10px" scrolling="no" allow="fullscreen"></iframe>
+  </header>
+  <main style="float: left; width: 59%;">
+    <p>
+    トラブル等は自己責任でお願いします。<br>不具合はcontact@skota11.com   <br>IPアドレスを取得しています。
+      <button id="change_btn" class="TurbowarpHTML" onclick="OnButtonClick();">TurboWarp形式をHTML形式に切り替える</button>
+  </p>
+
+<!-- 発言フォーム-->
+<!--     あぁ..ほんとですた...-->
+  <script language="javascript" type="text/javascript">
+        function OnButtonClick() {
+            target = document.getElementById("if");
+          text = document.getElementById("change_btn")
+          if(target.getAttribute("src") == "Amous"){
+            target.setAttribute("src","https://turbowarp.org/709143816/embed");
+            text.innerHTML = "TurboWarp形式をHTML形式に切り替える";
+          }else{
+           target.setAttribute("src","Amous");
+           text.innerHTML = "HTML形式をTurboWarp形式に切り替える";
+          }
+        }
+    function set_display() {
+  if (document.getElementById('radio_2').checked){
+    // btn_1を非表示
+    document.getElementById('footer').style.display = 'none'
+  }
+}
+    </script>
+<form id="frm-post">
+  Username:<input type="text" id="name" placeholder="名前の後に自分のアモアスの色を入れてね!" required><br>
+  内容：<input type="text" id="msg" placeholder="他のユーザーに敬意を持って発言しましょう!">
+  <button>送信</button>
+</form>
+<!-- -->
+<!-- 発言ログ -->
+<ul id="msglist" style="width: 59%; margin-bottom: 80px;">
+</ul>
+
+
+<script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </main>
+  
+  <footer id="footer" style="float:left; width:100%; background-color:#aacf53; height: 130px;">
+    
+    <p>
+      <span>製作者</span>：&copy;Skota11<a href="https://glitch.com/@Skota11"><!--ここにglitchロゴをいれる-->
+      </a><a href="https://scratch.mit.edu/users/Skota11"><!--ここにScrロゴをいれる--></a>
+      (kanade0402<a href="https://glitch.com/@mahamiha"><!--ここにglitchロゴをいれる--></a><a href="https://scratch.mit.edu/users/kanade0402">
+      <!--ここにScrロゴをいれる--></a>,
+      ここなっつ,
+      ハク<a href="https://glitch.com/@hacusei56"><!--ここにglitchロゴをいれる--></a><a href="https://scratch.mit.edu/users/hacusei56">
+      <!--ここにScrロゴをいれる--></a>)
+      <br><span>クレジット</span>：<a href="https://scratch.mit.edu" target="_blank">Scratch</a>にてのAmong Us原作者である
+      <a href="https://scratch.mit.edu/users/TimMcCool" target="_blank">TimMicCool</a>さん
+      <label><input type="checkbox" id="radio_2" onclick="set_display();"><strong>閉じる</strong></label>
+    </p>
+  </footer>
+</body>
+</html>
